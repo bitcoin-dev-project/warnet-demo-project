@@ -1,0 +1,35 @@
+name: "warnet-demo"
+version: "1.0.0"
+description: "A simple Warnet project for learning Bitcoin network analysis"
+
+# Default network to use
+default_network: "94.0.0-5k-inv"
+
+# Project metadata
+metadata:
+  author: "Warnet Demo Project"
+  tags: ["bitcoin", "network-analysis", "learning", "demo"]
+  difficulty: "beginner"
+
+# Available networks in this project
+networks:
+  - name: "94.0.0-5k-inv"
+    description: "Simple 5-node Bitcoin network for learning"
+    file: "networks/94.0.0-5k-inv.yaml"
+
+# Available scenarios in this project
+scenarios:
+  - name: "my_first_attack_5kinv"
+    description: "Your first attack scenario - basic network interaction"
+    file: "scenarios/my_first_attack_5kinv.py"
+    difficulty: "beginner"
+
+# Plugins available in this project
+plugins:
+  - name: "tor"
+    description: "Tor network integration"
+    directory: "plugins/tor"
+    
+  - name: "simln"
+    description: "Lightning Network simulation"
+    directory: "plugins/simln" 

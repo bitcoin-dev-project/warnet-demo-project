@@ -1,0 +1,17 @@
+# Default configuration for all nodes in this Warnet project
+# These settings will be applied to all nodes unless overridden
+
+bitcoin_config: |
+  server=1
+  rpcuser=warnet
+  rpcpassword=warnet
+  rpcallowip=0.0.0.0/0
+  regtest=1
+  listen=1
+  bind=0.0.0.0
+  blockmintxfee=0.00001
+  debug=net
+  logips=1
+
+# Default chain for all networks
+chain: regtest 

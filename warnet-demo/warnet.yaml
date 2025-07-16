@@ -3,7 +3,7 @@ version: "1.0.0"
 description: "A simple Warnet project for learning Bitcoin network analysis"
 
 # Default network to use
-default_network: "94.0.0-5k-inv"
+default_network: "simple-3node-network"
 
 # Project metadata
 metadata:
@@ -13,23 +13,13 @@ metadata:
 
 # Available networks in this project
 networks:
-  - name: "94.0.0-5k-inv"
-    description: "Simple 5-node Bitcoin network for learning"
-    file: "networks/94.0.0-5k-inv.yaml"
+  - name: "simple-3node-network"
+    description: "Simple 3-node Bitcoin network for learning propagation"
+    file: "networks/simple-3node-network/network.yaml"
 
 # Available scenarios in this project
 scenarios:
-  - name: "my_first_attack_5kinv"
-    description: "Your first attack scenario - basic network interaction"
-    file: "scenarios/my_first_attack_5kinv.py"
-    difficulty: "beginner"
-
-# Plugins available in this project
-plugins:
-  - name: "tor"
-    description: "Tor network integration"
-    directory: "plugins/tor"
-    
-  - name: "simln"
-    description: "Lightning Network simulation"
-    directory: "plugins/simln" 
+  - name: "propagation_check"
+    description: "Network propagation test - observe how transactions flow between nodes"
+    file: "scenarios/propagation_check.py"
+    difficulty: "beginner" 

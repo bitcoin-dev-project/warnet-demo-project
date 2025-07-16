@@ -1,0 +1,56 @@
+# Simple three-node Bitcoin network for learning Warnet
+# This creates a small network topology to demonstrate propagation
+
+nodes:
+  - name: tank-0000
+    bitcoin_config: |
+      server=1
+      rpcuser=warnet
+      rpcpassword=warnet
+      rpcallowip=0.0.0.0/0
+      regtest=1
+      listen=1
+      bind=0.0.0.0
+      blockmintxfee=0.00001
+      debug=net
+      logips=1
+  - name: tank-0001
+    bitcoin_config: |
+      server=1
+      rpcuser=warnet
+      rpcpassword=warnet
+      rpcallowip=0.0.0.0/0
+      regtest=1
+      listen=1
+      bind=0.0.0.0
+      blockmintxfee=0.00001
+      debug=net
+      logips=1
+  - name: tank-0002
+    bitcoin_config: |
+      server=1
+      rpcuser=warnet
+      rpcpassword=warnet
+      rpcallowip=0.0.0.0/0
+      regtest=1
+      listen=1
+      bind=0.0.0.0
+      blockmintxfee=0.00001
+      debug=net
+      logips=1
+
+
+
+# Network-wide settings
+chain: regtest
+
+# Dashboard and monitoring settings
+caddy:
+  enabled: true
+grafana:
+  enabled: true
+prometheus:
+  enabled: true
+fork_observer:
+  configQueryInterval: 20
+  enabled: true 

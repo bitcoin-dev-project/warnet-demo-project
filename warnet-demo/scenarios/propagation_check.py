@@ -1,30 +1,30 @@
 #!/usr/bin/env python3
 """
-My First Attack - 5K INV Scenario
+Network Propagation Check Scenario
 
-A simple scenario to demonstrate basic Warnet usage with a 5-node network.
+A simple scenario to demonstrate network propagation with a 3-node network.
 This scenario shows how to:
 1. Connect to nodes
 2. Monitor network state
 3. Perform basic network operations
-4. Observe network behavior
+4. Observe transaction propagation between nodes
 
 Usage:
-    warnet run scenarios/my_first_attack_5kinv.py
+    warnet run scenarios/propagation_check.py
 """
 
 import time
 from commander import Commander
 
 
-class MyFirstAttack5KInv(Commander):
+class PropagationCheck(Commander):
     def set_test_params(self):
         # This scenario works with any number of nodes
         self.num_nodes = 0
 
     def add_options(self, parser):
-        parser.description = "Your first attack scenario - basic network interaction"
-        parser.usage = "warnet run scenarios/my_first_attack_5kinv.py [options]"
+        parser.description = "Network propagation check - observe transaction flow between nodes"
+        parser.usage = "warnet run scenarios/propagation_check.py [options]"
         parser.add_argument(
             "--wait-time",
             dest="wait_time",
@@ -35,13 +35,33 @@ class MyFirstAttack5KInv(Commander):
 
     def run_test(self):
         """Main test logic"""
-        self.log.info("🚀 Starting My First Attack - 5K INV scenario")
+        self.log.info("🚀 Starting Network Propagation Check scenario")
         
-        # Step 1: Wait for all nodes to be ready
+        # Step 1: Wait for all nodes to be ready and connect them
         self.log.info("Step 1: Waiting for all nodes to be ready...")
         if len(self.nodes) > 1:
             self.wait_for_tanks_connected()
             self.log.info("✓ All nodes are ready and connected")
+            
+            # Manually connect nodes to each other (if not already connected)
+            self.log.info("Connecting nodes to each other...")
+            
+            # Check if nodes are already connected before connecting
+            # Get current peer counts
+            node0_peers = len(self.nodes[0].getpeerinfo())
+            node1_peers = len(self.nodes[1].getpeerinfo())
+            node2_peers = len(self.nodes[2].getpeerinfo())
+            
+            # Only connect if nodes don't have enough peers
+            if node0_peers < 2:
+                self.connect_nodes(0, 1)
+                self.connect_nodes(0, 2)
+            if node1_peers < 2:
+                self.connect_nodes(1, 2)
+            
+            # Wait for connections to establish
+            time.sleep(2)
+            self.log.info("✓ Nodes connected to each other")
         else:
             self.log.info("✓ Single node is ready")
         
@@ -65,7 +85,7 @@ class MyFirstAttack5KInv(Commander):
         self.log.info("Step 6: Checking final network state...")
         self.check_network_state()
         
-        self.log.info("🎉 My First Attack scenario completed successfully!")
+        self.log.info("🎉 Network Propagation Check completed successfully!")
 
     def check_network_state(self):
         """Check the current state of all nodes in the network"""
@@ -80,9 +100,11 @@ class MyFirstAttack5KInv(Commander):
             self.log.info(f"  - Connections: {connection_count}")
             self.log.info(f"  - Mempool size: {mempool_size}")
             
-            # For a single node, connections might be 0 which is fine
-            if connection_count == 0:
-                self.log.info(f"  - Note: Single node network (no peers expected)")
+            # Show peer connections
+            if connection_count > 0:
+                self.log.info(f"  - Connected to {connection_count} peers")
+            else:
+                self.log.info(f"  - No peer connections yet")
 
     def generate_initial_blocks(self):
         """Generate some initial blocks to create funds"""
@@ -146,7 +168,7 @@ class MyFirstAttack5KInv(Commander):
 
 
 def main():
-    MyFirstAttack5KInv().main()
+    PropagationCheck().main()
 
 
 if __name__ == "__main__":

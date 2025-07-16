@@ -58,7 +58,7 @@ Choose one of these options:
 
 ### 1. Set up Warnet
 
-Follow the [Warnet installation guide](https://github.com/bitcoin-dev-project/warnet/blob/main/docs/quick-start.md) for detailed setup instructions:
+Follow the [Warnet installation guide](https://github.com/bitcoin-dev-project/warnet/blob/main/README.md#quick-start) for detailed setup instructions:
 
 ```sh
 # Create virtual environment (isolated Python environment)

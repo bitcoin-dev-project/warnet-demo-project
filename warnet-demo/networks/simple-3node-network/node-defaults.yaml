@@ -1,17 +1,11 @@
 # Default configuration for all nodes in this Warnet project
 # These settings will be applied to all nodes unless overridden
-
-bitcoin_config: |
-  server=1
-  rpcuser=warnet
-  rpcpassword=warnet
-  rpcallowip=0.0.0.0/0
-  regtest=1
-  listen=1
-  bind=0.0.0.0
-  blockmintxfee=0.00001
+config: |
   debug=net
-  logips=1
+  debug=rpc
+  rpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c
+  rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo
+  rpcwhitelistdefault=0
 
-# Default chain for all networks
-chain: regtest 
+# Record certain RPC responses in Prometheus
+metricsExport: true

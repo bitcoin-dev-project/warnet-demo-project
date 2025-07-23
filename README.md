@@ -91,25 +91,7 @@ This will create a simple Bitcoin network with 3 nodes for basic experimentation
 
 **What happens**: Warnet will create three Bitcoin nodes (tank-0000, tank-0001, tank-0002) that can communicate with each other.
 
-### 3. Run the propagation test
-
-Execute the included scenario to see the network in action:
-
-```sh
-warnet run warnet-demo/scenarios/propagation_check.py --debug
-```
-
-**Note**: The `--debug` flag shows detailed runtime output, making it easier to follow what's happening. However, this will consume your terminal foreground. If you want to run other commands (like `warnet dashboard`) simultaneously, you can omit the `--debug` flag and run the scenario in the background.
-
-**What the scenario does**:
-
-- **Step 1**: Waits for all nodes to be ready and connected
-- **Step 2**: Generates initial blocks to create funds (like mining Bitcoin)
-- **Step 3**: Creates test transactions (like sending Bitcoin between addresses)
-- **Step 4**: Monitors transaction propagation across the 3-node network
-- **Step 5**: Shows you how nodes communicate and synchronize
-
-### 4. Monitor your network and watch the propagation
+### 3. Monitor your network to watch the propagation
 
 #### **Option A: Web Dashboard (Recommended)**
 
@@ -154,9 +136,27 @@ warnet bitcoin rpc tank-0000 getnetworkinfo
 # Check mempool (pending transactions waiting to be included in a block)
 warnet bitcoin rpc tank-0000 getmempoolinfo
 
-# View recent blocks
+# View number of blocks in chain
 warnet bitcoin rpc tank-0000 getblockcount
 ```
+
+### 4. Run the propagation scenario
+
+Execute the included scenario to see the network in action:
+
+```sh
+warnet run warnet-demo/scenarios/propagation_check.py --debug
+```
+
+**Note**: The `--debug` flag shows detailed runtime output, making it easier to follow what's happening. However, this will consume your terminal foreground. If you want to run other commands (like `warnet dashboard`) simultaneously, you can omit the `--debug` flag and run the scenario in the background.
+
+**What the scenario does**:
+
+- **Step 1**: Waits for all nodes to be ready and connected
+- **Step 2**: Generates initial blocks to create funds (like mining Bitcoin)
+- **Step 3**: Creates test transactions (like sending Bitcoin between addresses)
+- **Step 4**: Monitors transaction propagation across the 3-node network
+- **Step 5**: Shows you how nodes communicate and synchronize
 
 #### **What You'll See:**
 

@@ -1,0 +1,20 @@
+# Simple three-node Bitcoin network for learning Warnet
+# This creates a small network topology to demonstrate propagation
+
+nodes:
+  - name: tank-0000
+  - name: tank-0001
+    addnode:
+      - tank-0000
+  - name: tank-0002
+    addnode:
+      - tank-0001
+
+# Network-wide settings
+chain: regtest
+
+# Dashboard and monitoring settings
+caddy:
+  enabled: true
+fork_observer:
+  enabled: true 
